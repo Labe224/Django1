@@ -1,0 +1,79 @@
+{% extends 'accounts/baselog.html' %}
+{%load static%}
+
+{% block title %} Inscription {%endblock%}
+{% block contains%}
+<h1 class="title_one">Modification</h1>
+<form action="" method="post">
+    {% csrf_token %}
+    <div class="conexion">
+       <div class="username">
+         <span class="fa-solid fa-user"></span>
+         <input type="text" name="username" required placeholder="username" onchange="activebouton()">
+       </div>
+       <div class="username">
+        <span class="fa-solid fa-user"></span>
+        <input type="text" name="new" placeholder=" nouveau user_name" ">
+       </div>
+       <div class="username">
+        <span class="fa-solid fa-envelope"></span>
+        <input type="text" name="email" placeholder="Adresse_mail"  id="mail" onchange="valid_mail()" value="{{email}}">
+       </div>
+       <i></i>
+       <div class="username">
+        <span class="fa-solid fa-lock"></span>
+        <input type="password" name="password" placeholder="password" id="pass" onchange="valid_pass()">
+       </div>
+       <i></i>
+       <div class="username">
+        <span class="fa-solid fa-lock"></span>
+        <input type="password" name="password_confirm" placeholder="confirm_password" onchange="activebouton()">
+       </div>
+    </div>
+    <button type="submit" class="submit" id="bouton"> modifier </button>
+</form>
+<div class="link" >
+     <a href="{%url 'accounts:login' %}"> Abandoner</a>
+</div>
+<script defer>
+   const email_regexp=/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+   const pass_regexp=/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/
+   let bouton= document.getElementById('bouton')
+   let error=document.getElementsByTagName("i")
+   function valid_mail(){
+    error[1].textContent=''
+    let email=document.getElementById('mail')
+    if(email_regexp.test(email.value)){
+      error[1].textContent="email valide"
+      return true
+    }else{
+      error[1].textContent='email invalide'
+      return false
+    }
+  }
+   
+   function valid_pass(){
+    error[2].textContent=''
+    let pass=document.getElementById('pass')
+    if(pass_regexp.test(pass.value)){
+      error[2].textContent="mot de pass valid"
+      return true
+    }
+    else{ 
+      error[2].textContent="mot de pass invalide(8 caractères 1 majuscule 1 muniscule 1 caractère spécial 1 chiffre)"
+      return false
+    }
+  }
+
+  function activebouton(){
+    if (valid_mail()==true && valid_pass()==true){
+   bouton.disabled=false
+  }
+  }
+
+ 
+</script>
+{% for message in messages %}
+<p>{{message}}</p>
+{%endfor%}
+{% endblock %}

@@ -1,0 +1,326 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+header{
+    display: flex;
+    background-color: #1D0A35;
+    height: 40;
+    width: 100%;
+    color: white;
+    align-items: center;
+    justify-content: flex-end;
+    box-shadow: 0px 2px 2px black;
+}
+/* page2*/
+input{
+   width: 80%;
+   margin-top: 10px;
+   margin-left: 10%;
+   height: 35px;
+   text-align: center;
+   border-radius: 15px;
+   background-color: #ECE6F0;
+   border: 1px black;
+}
+button{ 
+    color: black;
+    position: relative;
+    right: 7%;
+    border: none;
+}
+#rechercher{
+    color: black;
+}
+
+#domaine{
+    margin-top: 17px;
+}
+/* page2*/
+
+/* page3*/
+.image_livre{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    gap: 10px;
+
+}
+.details_livre{
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    height: 200px;
+    margin-left: 20px;
+    padding-right: 20px;
+}
+.Titre{
+    font-size: 14px;
+    font-weight: bold;
+}
+.icones_2{
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    margin-left:25%;
+    margin-bottom: 15px;
+    gap: 20px;
+    color: white;
+}
+
+#evaluation{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 10px;
+}
+input[type='radio']{
+    display: none;
+}
+.envoyer{
+    width: 50%;
+    height: 30px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px black;
+    margin-left:30%;
+    margin-top: 25px;
+    background-color: #3575BD;
+    color: white;
+}
+.red{
+    color: red;
+}
+/* page3*/
+
+.icones{
+    margin-left: auto;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 25%;
+}
+#logo{
+    margin-left: 10px;
+    cursor: pointer;
+}
+.fa-solid{
+    cursor: pointer;
+    color: white;
+}
+
+.sub_menu{
+    width: 95%;
+    height: 80vh;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 35px;
+    background-color: #3575BD;
+    padding: 10px;
+    display: none;
+}
+.sub_menu a{
+    text-decoration: none;
+    color: white;
+    font-size: 15px;
+}
+.affiche{
+    display: flex;
+}
+.sub_menu span{
+    margin-right: 60%;
+    margin-top: 10%;
+}
+.title_one{
+    text-align: center;
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+.corps{
+    margin-top: 15px;
+}
+.subtext{
+    font-size: 10px;
+    font-style: italic;
+    font-weight: lighter;
+    margin-left: 70%;
+}
+.image_intro{
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+.div_image{
+    color: white;
+    padding: 20px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position-y: center;
+}
+.image{
+    width: 100%; /* Rendre l'image responsive */
+    height: auto; /* Conserver les proportions de l'image */
+    text-shadow: 2px 3px 5px rgba(0, 0, 0); 
+}
+.subtext2{
+    position: absolute; /* Positionner le texte par rapport au conteneur parent */
+    top: 10%; /* Positionner le texte verticalement au centre */
+    left: 40%; /* Positionner le texte horizontalement au centre */
+    transform: translate(-50%, -50%); /* Ajuste le texte pour qu'il soit parfaitement centré */
+    color: white; /* Couleur du texte */
+    font-size: 10px;
+    font-style: italic;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Ombre du texte pour améliorer la lisibilité */
+}
+
+.meilleur_lecture{
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.livre_box{
+    display: flex;
+    width: 100%;
+    height: auto;
+    justify-content: space-evenly;
+    margin-top: 20px;
+    padding-right: 10px;
+    flex-wrap: wrap;
+}
+
+.livre{
+    width: 170px;
+    height: 250px;
+    background-color: #201D60;
+    padding-top: 2px;
+    margin-left: 20px;
+    margin-top: 20px;
+    box-shadow: 2px 2px black, -2px 0 2px black;
+
+}
+.livre_image{
+     width: 90%;
+     height: 70%;
+     margin: auto;
+     background-position-x: center;
+     background-position-y:10px ;
+}
+ 
+.titre_livre{
+    width: 100%;
+    height: 35px;
+    background-color: black;
+    margin-top: 2px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+.icones_livre{
+     display: flex;
+     width: 100%;
+     height: 40px;
+     align-items: center;
+     justify-content: space-evenly;
+}
+.icones_livre a i{
+    color: white;
+
+}
+
+.subtext1{
+    position: absolute; /* Positionner le texte par rapport au conteneur parent */
+    top: 85%; /* Positionner le texte verticalement au centre */
+    left: 15%; /* Positionner le texte horizontalement au centre */
+    transform: translate(-50%, -50%); /* Ajuste le texte pour qu'il soit parfaitement centré */
+    color: white; /* Couleur du texte */
+    font-size: 10px;
+    font-style: italic;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Ombre du texte pour améliorer la lisibilité */
+}
+
+.pieds_page{
+    width: 100%;
+    height: 150px;
+    background-color: #1D0A35;
+    margin-top: 5px;
+    align-self: flex-end;
+}
+
+.conexion_2{
+    display: none;
+}
+
+@media screen and (min-width: 830px){
+.sub_menu{
+display: flex;
+flex-direction: row;
+align-items: center;
+justify-content: space-evenly;
+height: 40px;
+width: 100%;
+margin-right:0;
+    
+}
+.sub_menu span{
+    display: none;
+}
+#menu_btn{
+    display: none;
+}
+.conexion_2{
+    display: block;
+}
+.title_one{
+    font-size: 25px;
+}
+.details_livre{
+    margin-left: 50px;
+    font-size: 18px;
+}
+.Titre{
+    font-size: 20px;
+}
+}
+@media screen and (min-width:500px){
+    .subtext2{
+        font-size: 20px;
+        top: 20%;
+    }
+    
+}
+@media screen and (max-width:330px){
+    .subtext2{
+        top: 30%;
+    }
+    
+}
+@media screen and (max-width:389px){
+    .livre{
+        width:120px;
+
+    }
+    .livre_image{
+        height: 60%;
+    }
+    .titre_livre{
+        height:50px ;
+        font-size: 12px;
+    }
+
+}

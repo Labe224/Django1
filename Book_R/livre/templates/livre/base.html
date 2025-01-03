@@ -1,0 +1,46 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'Livre/css/accueil.css' %}">
+    <script  defer src="{% static 'Livre/js/app1.js' %}"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <title>{% block title %} Document {% endblock %}</title>
+</head>
+<body>
+    <header>
+        <div id="logo">Book_R</div>
+        <div class="icones">
+            <i class="fa-solid fa-bars" id="menu_btn"></i>
+           <a href="{% url 'accounts:login' %}"><i class="fa-solid fa-user"  style="display: flex; align-items: center; gap: 2px;"> <span class="conexion_2">Conexion</span></i></a> 
+        </div>
+    </header>
+    <form action="">
+        <input type="search" placeholder="Rechercher un livre" name="recherche">
+        <button type="submit" ><i class="fa-solid fa-magnifying-glass" id="rechercher"></i></button>
+    </form>
+
+    <div class="sub_menu" id="sub_menu">
+        <a href="{%url 'home' %}">Accueil</a>
+        <a href="{% url 'domaine' Domaine='Informatique' %}">Informatique</a>
+        <a href="{% url 'domaine' Domaine='Mathematiques' %}">Mathématiques</a>
+        <a href="{% url 'domaine' Domaine='Physique' %}">Physique</a>
+        <a href="{% url 'domaine' Domaine='Culture'%}">Culture</a>
+        <a href="{% url 'domaine' Domaine='Autres'%}">Autres</a>
+        <span>Book_R lire pour vivre</span>
+    </div>
+    <div id="corps">
+        {% block content%}
+
+        {% endblock %}
+
+    </div>
+
+    
+    <footer  class="pieds_page">
+
+    </footer>
+
+</body>
+</html>

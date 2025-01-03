@@ -1,0 +1,35 @@
+{% extends 'Livre/base.html'%}
+{%load static %}
+{% block title %} Accueil {% endblock%}
+{% block content %} 
+
+<h3 class="title_one">Bienvenu sur Book_R</h3>
+        <small class="subtext">Lire pour vivre</small>
+
+        <div class="image_intro">
+            <img src="{%static 'Livre/images/image1.png' %}" class="image" alt="">
+             <div class="subtext2">Book_R Votre space de lecture retrouver les meilleurs livres de sciences : informatiques , mathématiques , physique 
+               et aussi les meilleurs livres de cultures
+                et de developpement personnel</div>
+        </div>
+       <div class="meilleur_lecture">
+         <h3 class="title_one">Les plus lus du mois</h3>
+         <div class="livre_box">
+            {%for livre in livre%}
+             <div class="livre">
+                <a href="{% url 'livre' Titre=livre.Titre %}"><div class="livre_image" style="background-image: url({{livre.Image.url}});"></div></a>
+                <div class="titre_livre"><span>{{livre.Titre}}</span></div>
+                <div class="icones_livre">
+                    <a href="{% url 'lecteur' Titre=livre.Titre %}"><i class="fas fa-book-open"></i></a>
+                     <a href="{{livre.pdf.url}}" download="{{livre.Titre}}"> <i class="fas fa-download"></i></a>
+                </div>
+             </div>
+             {%endfor%}
+          </div>
+        </div>
+        <hr>
+        <h3 class="title_one">Pourquoi lire ?</h3>
+
+      <div class="div_image div_intro" style="background-image: url('{% static 'Livre/images/image2.png' %}');height:500px;"> Book lire pour vivre </div>
+
+{% endblock %}

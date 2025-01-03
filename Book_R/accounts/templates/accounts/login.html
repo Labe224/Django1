@@ -1,0 +1,64 @@
+{% extends 'accounts/baselog.html' %}
+{%load static%}
+
+{% block title %} compte {%endblock%}
+{% block contains%}
+{% if user.is_authenticated %}
+       
+    <h3 class="title_one">Bienvenue {{profile.user.username}}</h3>
+      <div class="conexion">
+        <div class="password">
+         <span class="fa-solid fa-user"><i>Nom:</i></span>
+         <span class="info">{{profile.Nom}}</span>
+        </div>
+        <div class="password">
+         <span class=" fa-solid fa-user title"><i>Prénom:</i></span>
+         <span class="info">{{profile.Prenom}}</span>
+    
+        </div>
+        <div class="password">
+         <span class="fa-solid fa-envelope title"><i>Email:</i></span>
+         <span class="info">{{profile.email_address}}</span>
+        </div>
+        <div class="password">
+         <span class="fa-solid fa-graduation-cap title"><i>Niveau Etude:</i></span>
+         <span class="info">{{profile.niveau_etude}}</span>
+         
+        </div>
+        <div class="password">
+            <span class="fa-solid fa-book-open title"><i>Nombre de livre lu:</i></span>
+            <span class="info">{{profile.lecture}}</span>
+           </div>
+     </div>
+                    
+    <a href="{% url 'accounts:logout' %}" class="link">Deconexion</a>
+    <a href="{% url 'accounts:modif' %}" class="link">Modifier profile</a>
+    <a href="{% url 'accounts:historique' %}" class="link" id="historique"> Aficher vos historiques </a>
+     </div>
+
+    
+
+    {% else %}
+    <h1 class="title_one">Connexion</h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="conexion">
+           <div class="username">
+             <span class="fa-solid fa-user"></span>
+             <input type="text" name="username" placeholder="username" required>
+           </div>
+           <div class="username">
+            <span class=" fa-solid fa-lock"></span>
+            <input type="password" name="password" placeholder="password" required>
+           </div>
+        </div>
+        <button type="submit" class="submit"> se connecter </button>
+    </form>
+    <div class="link" >
+       <a href="{%url 'accounts:register' %}"> s'inscrire</a>
+    </div>
+    
+</div>
+ {% endif %}
+{% endblock %}
+

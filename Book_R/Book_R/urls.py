@@ -21,7 +21,8 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',include('livre.url'))
+    path('',include('livre.url')),
+    path('accounts',include('accounts.url'))
 ]
 if settings.DEBUG:  # Seulement en mode de développement (DEBUG=True)
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

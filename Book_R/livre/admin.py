@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Livre
+from .models import Livre,Historique
 
 class Livreadmin(admin.ModelAdmin):
     search_fields=('Titre',)
@@ -7,3 +7,4 @@ class Livreadmin(admin.ModelAdmin):
 
 # Register your models here.
 admin.site.register(Livre,Livreadmin)
+admin.site.register(Historique)

@@ -1,0 +1,121 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <title>historique</title>
+</head>
+<body>
+   
+    <header>
+        <div id="logo">Book_R</div>
+        <div class="icones">
+            <a href="{% url 'home' %}" style="color: white;"><i class="fa-solid fa-house"></i></a>
+        </div>
+    </header>
+<h3 class="title_one"> Votre historique de livre visiter </h3>
+
+<div class="livre_box">
+    {% for historique in historique %}
+     <div class="livre">
+        <span class="title_one" style="color: white; margin-left: 10px;">{{historique.date}}</span>
+        <a href="{% url 'livre' Titre=historique.livre.Titre %}"><div class="livre_image" style="background-image: url({{historique.livre.Image.url}});"></div></a>
+        <div class="titre_livre"><span>{{historique.livre.Titre}}</span></div>
+
+        <div class="icones_livre">
+            <a href=" {% url 'lecteur' Titre=historique.livre.Titre %}"><i class="fas fa-book-open"></i></a>
+             <a href="{{historique.livre.pdf.url}}" download="{{historique.livre.Titre}}"> <i class="fas fa-download"></i></a>
+        </div>
+</div>
+</body>
+</html>
+
+        {% endfor %}
+<style>
+    *{
+        margin: 0;
+        padding:0;
+    }
+    body{
+        width: 100%;
+
+    }
+header{
+    display: flex;
+    background-color: #1D0A35;
+    height: 40;
+    width: 100%;
+    color: white;
+    align-items: center;
+    justify-content: flex-start;
+    box-shadow: 0px 2px 2px black;
+    padding-left: 15px;
+    margin-bottom: 20px;
+}
+
+.livre_box{
+    display: flex;
+    width: 100%;
+    height: auto;
+    justify-content: flex-start;
+    margin-top: 20px;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.livre{
+    width: 170px;
+    height: 280px;
+    background-color: #201D60;
+    padding-top: 2px;
+    margin-left: 20px;
+    box-shadow: 2px 2px black, -2px 0 2px black;
+}
+.livre_image{
+     width: 90%;
+     height: 70%;
+     margin: auto;
+     background-color: red;
+}
+ 
+.titre_livre{
+    width: 100%;
+    height: 35px;
+    background-color: black;
+    margin-top: 2px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+.icones_livre{
+     display: flex;
+     width: 100%;
+     height: 40px;
+     align-items: center;
+     justify-content: space-evenly;
+}
+.icones_livre a i{
+    color: white;
+
+}
+.title_one{
+    text-align: center;
+    padding: 10px;
+}
+
+.icones{
+    margin-left: auto;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 25%;
+}
+#logo{
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+</style>

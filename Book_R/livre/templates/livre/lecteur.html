@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecture PDF</title>
+    <!-- Inclusion de PDF.js depuis un CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
+</head>
+<body>
+
+    <div class="pdf-container">
+        <!-- Contrôles du lecteur -->
+        <div id="controls">
+            <button id="prev">Précédent</button>
+            <button id="next">Suivant</button>
+            <button id="zoom-in">Zoom +</button>
+            <button id="zoom-out">Zoom -</button>
+        </div>
+        <div id="page-info">
+            Page : <span id="page_num">1</span> / <span id="page_count">1</span>
+        </div>
+        <canvas id="canvas"></canvas>
+    </div>
+    <style>
+        .pdf-container{
+            width: 100%;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        canvas{
+            border: 2px solid black;
+            
+
+        }
+        .controls{
+            width: 100%;
+        }
+        button{
+            background-color: deepskyblue;
+            padding: 10px;
+            color: white;
+            font-weight: 18px;
+            border-radius: 15px;
+            box-shadow: 2px 2px 3px black;
+            border: 1px solid white;
+            margin-left: 10px ;
+        }
+        button:hover{
+            cursor: pointer;
+            scale: 1.08;
+
+        }
+    </style>
+
+    <script>
+        var pdfDoc = null;
+        var pageNum = 1;
+        var pageRendering = false;
+        var pageNumPending = null;
+        var scale = 1.5;
+        var canvas = document.getElementById('canvas');
+        var ctx = canvas.getContext('2d');
+
+        // Fonction pour afficher une page du PDF
+        function renderPage(num) {
+            pageRendering = true;
+            pdfDoc.getPage(num).then(function(page) {
+                var viewport = page.getViewport({ scale: scale });
+                canvas.height = viewport.height;
+                canvas.width = viewport.width;
+
+                var renderContext = {
+                    canvasContext: ctx,
+                    viewport: viewport
+                };
+
+                var renderTask = page.render(renderContext);
+                renderTask.promise.then(function() {
+                    pageRendering = false;
+                    if (pageNumPending !== null) {
+                        renderPage(pageNumPending);
+                        pageNumPending = null;
+                    }
+                });
+            });
+            document.getElementById('page_num').textContent = num;
+        }
+
+        // Chargement du PDF
+        pdfjsLib.getDocument('{{livre.pdf.url}}').promise.then(function(doc) {
+            pdfDoc = doc;
+            document.getElementById('page_count').textContent = pdfDoc.numPages;
+            renderPage(pageNum);
+        });
+
+        // Navigation vers la page suivante
+        document.getElementById('next').addEventListener('click', function() {
+            if (pageNum < pdfDoc.numPages) {
+                pageNum++;
+                renderPage(pageNum);
+            }
+        });
+
+        // Navigation vers la page précédente
+        document.getElementById('prev').addEventListener('click', function() {
+            if (pageNum > 1) {
+                pageNum--;
+                renderPage(pageNum);
+            }
+        });
+
+        // Zoom avant
+        document.getElementById('zoom-in').addEventListener('click', function() {
+            scale *= 1.2;  // Augmenter le facteur de zoom de 20%
+            renderPage(pageNum);
+        });
+
+        // Zoom arrière
+        document.getElementById('zoom-out').addEventListener('click', function() {
+            scale /= 1.2;  // Réduire le facteur de zoom de 20%
+            renderPage(pageNum);
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,62 @@
+{% extends 'Livre/base.html'%}
+{% block title %} {{livre.Titre}} {%endblock%}
+{% block content %}
+
+<div class="image_livre">
+    <h3 class="title_one">{{livre.Titre}}</h3>
+    <img src="{{livre.Image.url}}" alt="" style="border: 1px solid black; box-shadow: 2px 2px 2px black;">
+</div>
+<h3 class="title_one">Details du livre</h3>
+<div class="details_livre">
+    <span><span class="Titre">Auteur :</span> <span class="contenu">{{livre.Auteur}}</span></span>
+    <span><span class="Titre">Date :</span> <span class="contenu">{{livre.Date}}</span> <br></span>
+    <span><span class="Titre">Description:</span> <span class="contenu">{{livre.Description}}</span></span>
+    <span><span class="Titre">Nombre de lecture :</span><span class="contenu">{{livre.Nb_lecture}}</span></span>
+    <span><span class="Titre">Notes:</span> <span class="contenu">{{livre.Note}}/5</span></span>
+</div>
+
+<div class="icones_2">
+    <a href="{% url 'lecteur' Titre=livre.Titre %}"><i class="fas fa-book-open"></i></a>
+    <a href="{{livre.pdf.url}}" download="{{livre.Titre}}"> <i class="fas fa-download"></i></a>
+</div>
+ <h3 class="title_one" >Evaluer</h3>
+ <form action="" method="post">
+    {% csrf_token %}
+<div id="evaluation">
+    <input type="radio" name="note" value="1"><i class="fa-regular fa-star"  onclick="change(this)"></i>
+    <input type="radio" name="note" value="2"><i class="fa-regular fa-star" onclick="change(this)"></i></i>
+    <input type="radio" name="note" value="3"><i class="fa-regular fa-star" onclick="change(this)"></i></i>
+    <input type="radio" name="note" value="4"><i class="fa-regular fa-star" onclick="change(this)"></i></i>
+    <input type="radio" name="note" value="5"><i class="fa-regular fa-star" onclick="change(this)"></i></i>
+
+</div>
+<button type="submit" class="envoyer">Envoyer</button>
+</form>
+<style>
+</style>
+<script>
+    let etoiles=document.getElementsByClassName('fa-star')
+    const radios = document.querySelectorAll('input[name="note"]');
+    let bouton=document.getElementsByClassName('envoyer')
+    bouton[0].disabled=true
+    function change(params){
+        params.classList.toggle('red')
+        for (let index = 0; index < etoiles.length; index++) {
+             if(etoiles[index].className.indexOf('red')!=-1){
+                radios[index].checked = true
+                bouton[0].disabled=false
+                for (i=0; i<index; i++){
+                    if (etoiles[i].className.indexOf('red')==-1){
+                        etoiles[i].classList.toggle('red')
+                    }
+                }
+             }
+            
+        }
+
+    }
+   
+   
+
+</script>
+{% endblock %}

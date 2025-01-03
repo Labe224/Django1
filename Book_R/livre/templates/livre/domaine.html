@@ -1,0 +1,53 @@
+{% extends 'Livre/base.html' %}
+{% load static %}
+{%block title %} Titre {% endblock %}
+
+{%block content%} 
+<h3 class="title_one" id="titre">{{domaine}}</h3>
+<div class="image_intro">
+    <img src="" class="image" alt="" id="image_intro">
+</div>
+<div class="meilleur_lecture">
+ <h3 class="title_one">Nos livres</h3>
+ <div class="livre_box">
+    {%for livre in livre%}
+     <div class="livre">
+        <a href="{% url 'livre' Titre=livre.Titre %}">
+         <div class="livre_image" style="background-image: url({{livre.Image.url}}); border: 1px solid black; box-shadow: 2px 2px 2px black;"></div></a>
+        <div class="titre_livre"><span>{{livre.Titre}}</span></div>
+        <div class="icones_livre">
+            <a href="{% url 'lecteur' Titre=livre.Titre %}"><i class="fas fa-book-open"></i></a>
+             <a href="{{livre.pdf.url}}" download="{{livre.Titre}}"> <i class="fas fa-download"></i></a>
+        </div>
+     </div>
+     {%endfor%}
+  </div>
+  <hr style="margin-top: 15px;">
+  <div id="domaine">
+        <h3 class="title_one">{{domaine}} Pourquoi ?</h3>
+  </div>
+
+  <script >
+    let image_intro=document.getElementById("image_intro")
+    let domaine=document.getElementById('titre').textContent
+    console.log(domaine)
+    switch (domaine) {
+    case 'Informatique':
+         image_intro.src="{%static 'Livre/images/image3.png' %}"
+              break;
+    case 'Mathematiques':
+       image_intro.src="{%static 'Livre/images/image4.png' %}"
+       break;
+   case 'Physique':
+      image_intro.src="{%static 'Livre/images/image5.png' %}"
+      break;
+   case 'Culture':
+      image_intro.src="{%static 'Livre/images/image6.png' %}"
+      break;
+
+
+    default: 
+            break;
+}
+</script>
+  {% endblock %}

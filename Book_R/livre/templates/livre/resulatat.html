@@ -1,0 +1,28 @@
+{% extends 'livre/base.html' %} 
+{% load static %}
+{% block title%} Resultat recherche {%endblock%}
+{% block content %}
+<h1 class="title_one">Rusulat de la recheche</h1>
+<div class="livre_box">
+    {% if not livres %}
+     <h3 class="title_one">0 livres ne correspond à votre recherche </h3>
+     {% else %}
+    {%for livre in livres%}
+     <div class="livre">
+        <a href="{% url 'livre' Titre=livre.Titre %}"><div class="livre_image" style="background-image: url({{livre.Image.url}});"></div></a>
+        <div class="titre_livre"><span>{{livre.Titre}}</span></div>
+        <div class="icones_livre">
+            <a href="{% url 'lecteur' Titre=livre.Titre %}"><i class="fas fa-book-open"></i></a>
+             <a href="{{livre.pdf.url}}" download="{{livre.Titre}}"> <i class="fas fa-download"></i></a>
+        </div>
+     </div>
+     <style>
+       footer{
+         display: none;
+       }
+     </style>
+     {%endfor%}
+     {% endif %}
+  </div>
+
+{% endblock %}
